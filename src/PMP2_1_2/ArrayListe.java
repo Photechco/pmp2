@@ -1,6 +1,6 @@
 package PMP2_1_2;
 
-public class ArrayListe<T> {
+/*public class ArrayListe<T> {
 
     private int anzahlElemente;
     private Object elemente;
@@ -37,4 +37,4 @@ public class ArrayListe<T> {
     Object getKleinstesElement(){
 
     }
-}
+}*/
