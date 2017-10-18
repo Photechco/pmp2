@@ -1,5 +1,6 @@
 package PMP2_1_2;
 
+// TODO Generics machen
 /*public class ArrayListe<T> {
 
     private int anzahlElemente;
