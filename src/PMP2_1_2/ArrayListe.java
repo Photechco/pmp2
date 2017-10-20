@@ -1,5 +1,6 @@
 package PMP2_1_2;
 
+
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 /**
@@ -64,7 +65,7 @@ public class ArrayListe<T extends Comparable<T>> {
                 try {
                     entferneElementAnIndex(i);
                 }
-                catch (InvalidArgumentException e) {
+                catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
             }
@@ -77,7 +78,7 @@ public class ArrayListe<T extends Comparable<T>> {
      * @param index Element an index wird gelöscht.
      */
 
-    public void entferneElementAnIndex(int index)throws InvalidArgumentException {
+    public void entferneElementAnIndex(int index)throws IllegalArgumentException {
         if (index > elemente.length) {
             throw new IllegalArgumentException("index zu hoch");
         }
