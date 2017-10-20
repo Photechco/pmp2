@@ -1,14 +1,37 @@
 package PMP2_1_2;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
+/**
+ * Klasse kann Objekte speichern, verwalten und ausgeben.
+ * Zu speicherndes Obket muss {@link Comparable} implementieren.
+ * @param <T> Objekt muss {@link Comparable} implementieren
+ */
+
 public class ArrayListe<T extends Comparable<T>> {
+
+    /**
+     * @param anzahlElemente Speichert die Anzahl der Elemente der Array Liste
+     * @param elemente Array speichert die Objekte
+     */
 
     private int anzahlElemente;
     private Object elemente[];
+
+    /**
+     * Konstruktor der Arrayliste
+     */
 
     public ArrayListe(){
         elemente = new Object[1];
         anzahlElemente = 0;
     }
+
+    /**
+     * Es wird das übergebene Objekt gespeichert.
+     * Falls der das Array keinen Platz mehr hat, wird das Array erweitert.
+     * @param element das element wir gespeichert
+     */
 
     public void hinzufuegen(T element) {
         if(elemente.length == anzahlElemente-1) {
@@ -18,29 +41,65 @@ public class ArrayListe<T extends Comparable<T>> {
         anzahlElemente++;
     }
 
+    /**
+     * Methode gibt das Objekt an Index zurück
+     * @param index gibt den Index des zuückzugebenen Objektes an
+     * @return gibt das Element an Index zurück
+     */
+
     public Object get(int index) {
         return elemente[index];
     }
+
+    /**
+     * Methode löscht das übergebene Obkjekt aus dem Array.
+     * Es wird über das Array iteriert und mit dem übergebenen Objekt übergeben.
+     * Zum löschen wird die Funktion entferneElement aufgerufen.
+     * @param element Übergebenes Objekt wird gelöscht
+     */
 
     public void entferne(T element) {
         int i = 0;
         for (Object oneElement:elemente) {
             if (oneElement == element) {
-                entferneElementAnIndex(i);
+                try {
+                    entferneElementAnIndex(i);
+                }
+                catch (InvalidArgumentException e) {
+                    e.printStackTrace();
+                }
             }
             i++;
         }
     }
 
-    public void entferneElementAnIndex(int index) {
+    /**
+     * Die Methode löscht das Element an index.
+     * @param index Element an index wird gelöscht.
+     */
+
+    public void entferneElementAnIndex(int index)throws InvalidArgumentException {
+        if (index > elemente.length) {
+            throw new IllegalArgumentException("index zu hoch");
+        }
         elemente[index] = null;
         System.arraycopy(elemente,index,elemente,index-1,elemente.length);
         anzahlElemente--;
     }
 
+    /**
+     * Methode gibt die Anzahl der gespeicherten Elemente zurück.
+     * @return Anzahl der gespeicherten Elemente Elemente
+     */
+
     public int getAnzahlElemente() {
         return anzahlElemente;
     }
+
+    /**
+     * Methode liefert alle toString-Methoden, getrennt durch ein Komma, der gespeicherten Elelemente zurück.
+     * @return toString aller gespeicherten Elemente
+     */
 
     @Override
     public String toString() {
@@ -50,6 +109,11 @@ public class ArrayListe<T extends Comparable<T>> {
         }
         return sb.toString();
     }
+
+    /**
+     * leifert das kleinste Element (verglichen durch compareTo())
+     * @return das kleinste Element
+     */
 
     Object getKleinstesElement(){
         Object kleinstesElement = get(0);
