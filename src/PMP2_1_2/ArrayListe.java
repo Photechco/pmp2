@@ -10,11 +10,6 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 
 public class ArrayListe<T extends Comparable<T>> {
 
-    /**
-     * @param anzahlElemente Speichert die Anzahl der Elemente der Array Liste
-     * @param elemente Array speichert die Objekte
-     */
-
     private int anzahlElemente;
     private Object elemente[];
 
@@ -58,7 +53,11 @@ public class ArrayListe<T extends Comparable<T>> {
      * @param element Übergebenes Objekt wird gelöscht
      */
 
-    public void entferne(T element) {
+    public void entferne(T element) throws IllegalArgumentException {
+        if (element == null) {
+            throw new IllegalArgumentException("Objekt darf nicht Null sein");
+        }
+
         int i = 0;
         for (Object oneElement:elemente) {
             if (oneElement == element) {
