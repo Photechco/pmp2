@@ -86,8 +86,12 @@ public class ArrayListe<T extends Comparable<T>> {
             throw new IllegalArgumentException("index zu hoch");
         }
         elemente[index] = null;
-        System.arraycopy(elemente,index,elemente,index,elemente.length);
-        anzahlElemente--;
+        if (anzahlElemente == 1) {
+            anzahlElemente--;
+        }else {
+            System.arraycopy(elemente,index+1,elemente,index,elemente.length);
+            anzahlElemente--;
+        }
     }
 
     /**
