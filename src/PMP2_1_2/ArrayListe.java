@@ -3,6 +3,8 @@ package PMP2_1_2;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
+import java.util.Arrays;
+
 /**
  * Klasse kann Objekte speichern, verwalten und ausgeben.
  * Zu speicherndes Obket muss {@link Comparable} implementieren.
@@ -32,6 +34,7 @@ public class ArrayListe<T extends Comparable<T>> {
     public void hinzufuegen(T element) {
         if(elemente.length == anzahlElemente-1) {
             System.arraycopy(elemente, 1, elemente, 1, elemente.length + 5);
+            Arrays.copyOf(elemente, elemente.length);
         }
         elemente[anzahlElemente] = element;
         anzahlElemente++;

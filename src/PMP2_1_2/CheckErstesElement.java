@@ -3,8 +3,15 @@ package PMP2_1_2;
 public class CheckErstesElement {
     public static void main (String[] ARGS) {
         ArrayListe arrayListe = new ArrayListe();
-        arrayListe.hinzufuegen(5);
-        Object check = arrayListe.get(0);
+        arrayListe.hinzufuegen(1);
+        arrayListe.hinzufuegen(2);
+        arrayListe.hinzufuegen(3);
+        arrayListe.hinzufuegen(4);
+
+        arrayListe.entferneElementAnIndex(1);
+
+        Object check = arrayListe.get(1);
+        System.out.println(check);
 
         if(check instanceof Number) {
             System.out.println("Erstes Element ist Zahl");
@@ -14,6 +21,7 @@ public class CheckErstesElement {
         }
         try {
             arrayListe.entferneElementAnIndex(0);
+
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
