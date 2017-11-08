@@ -9,10 +9,10 @@ public class String_Refactor {
 
     private final static Function<String, String> trim = String::trim;
     private final static Function<String, String> toUppercase = String::toUpperCase;
-    private final static Function<String, String> replace = e -> e.replaceAll("Ä", "AE")
-            .replaceAll("Ö", "OE")
-            .replaceAll("Ü", "UE")
-            .replaceAll("ß", "SS");
+    private final static Function<String, String> replace = e -> e.replace("Ä", "AE")
+            .replace("Ö", "OE")
+            .replace("Ü", "UE")
+            .replace("ß", "SS");
 
     private final static Function<String, String> shorten = e -> (e.length() > 8) ? e.substring(0, 8) : e;
 
