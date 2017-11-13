@@ -1,20 +1,45 @@
 package PMP2_2_2;
 
-import java.time.LocalDateTime;
 
-public class Flugzeug {
+public class Flugzeug extends Thread{
+
     private Flughafen flughafen;
     private String id;
     private int flugdauer;
     private int startzeit;
     private Status status;
-    private int zeit;
+    private int zeit = 0;
 
-    public void Flugzeug(String id, Flughafen flughafen) {
+    public Flugzeug(String id, int flugdauer, Flughafen flughafen, int zeit) {
         this.id = id;
         this.flughafen = flughafen;
         status = Status.IM_FLUG;
-        flugdauer = (int)(Math.random()*10);
+        this.flugdauer = flugdauer;
+        this.startzeit = zeit;
+        status = Status.IM_FLUG;
+    }
 
+    @Override
+    public void run() {
+        while (!isInterrupted()) {
+
+
+
+        }
+    }
+
+    public boolean istGelandet(){
+
+
+    }
+
+    @Override
+    public String toString() {
+        return id + startzeit + status;
+    }
+
+    public void setZeit(int zeit) {
+        this.zeit = zeit - this.startzeit;
+        flugdauer = this.zeit - startzeit;
     }
 }
