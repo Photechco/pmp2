@@ -3,6 +3,7 @@ package PMP2_3;
 import java.util.StringJoiner;
 
 public class Rangierbahnhof {
+
     int gleisAnzahl;
     Zug gleise[];
 
@@ -11,16 +12,21 @@ public class Rangierbahnhof {
         gleise = new Zug[10];
     }
 
-    void zugeinfahren(Zug zug, int gleisNummer) {
-        if (gleise[gleisNummer-1] != null) {
-
+    public synchronized void zugeinfahren(Zug zug, int gleisNummer) {
+        while (gleise[gleisNummer] != null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        gleise[gleisNummer-1] = zug;
+        gleise[gleisNummer] = zug;
     }
 
-    Zug zugAusfahren(int gleisNummer) {
-        Zug ausfahrt = gleise[gleisNummer-1];
-        gleise[gleisNummer-1] = null;
+    public synchronized Zug zugAusfahren(int gleisNummer) {
+        Zug ausfahrt = gleise[gleisNummer];
+        gleise[gleisNummer] = null;
+        notifyAll();
         return ausfahrt;
     }
 

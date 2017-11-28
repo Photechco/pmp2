@@ -15,14 +15,19 @@ public class Zugfuehrer extends Thread {
     public void run() {
 
         boolean status =  ThreadLocalRandom.current().nextBoolean();
+        int gleis = (int)(ThreadLocalRandom.current().nextDouble()*10);
 
         if (status) {
             Zug zug = new Zug("RB" + (int)(Math.random()*100));
-            rangierbahnhof.zugeinfahren(zug, (int)(Math.random()*10));
+            rangierbahnhof.zugeinfahren(zug, gleis);
+            System.out.println("Gleis " + (gleis+1) + " ist eingefahren: " + zug.toString());
         }
         else {
-            Zug zugausfahrt = rangierbahnhof.zugAusfahren((int)(Math.random()*10));
-            System.out.println(zugausfahrt + "ist ausgefahren!");
+            Zug zugausfahrt = rangierbahnhof.zugAusfahren(gleis);
+
+            if (zugausfahrt != null) {
+                System.out.println("Gleis " + (gleis+1) + " ist ausgefahren " + zugausfahrt);
+            }
         }
     }
 }
