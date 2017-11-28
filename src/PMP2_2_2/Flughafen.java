@@ -1,56 +1,58 @@
 package PMP2_2_2;
 
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Flughafen extends Thread {
+    private static final long ZEIT_SCHRITT_MS = 500;
 
-    private int anzahlFlugzeuge;
-    private List<Flugzeug> flugzeugList;
+    private final List<Flugzeug> flugzeuge = new ArrayList<>();
+    private Duration zeit = Duration.ZERO;
 
-    public void Flughafen(int anzahlFlugzeuge) {
-        for (int i=0; i<=anzahlFlugzeuge; i++) {
-            flugzeugList.add(new Flugzeug(String.format("AB%03d",i),(int)(Math.random()*10),this));
-            anzahlFlugzeuge++;
+    private Flughafen(int anzahl) {
+        for (int i = 0; i < anzahl; i++) {
+            flugzeuge.add(new Flugzeug(zeit, this));
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        final Flughafen flughafen = new Flughafen(3);
+        flughafen.start();
+        flughafen.join();
     }
 
     @Override
     public void run() {
-        boolean alive = true;
-        int zeit = 0;
-        Status istGelandet;
-
-        while (!isInterrupted()) {
-
-            flugzeugList.forEach(e->{
-                if(e.istGelandet()) {
-                    flugzeugList.remove(e);
-                }
-                e.setZeit(zeit);
-
-
-
-            };)
-
-            try {
-                sleep(500);
-            }
-            catch (InterruptedException e) {
-                interrupt();
-            }
-            zeit += 5;
-
+        // starte Flugzeuge
+        for (Flugzeug flugzeug : flugzeuge) {
+            flugzeug.start();
         }
-        while (alive) {
-            flugzeugList.forEach(e->{
-                try{ e.join();}
-                catch (InterruptedException ex) {
-                    e.interrupt();
+
+        while (true) {
+            // schreite Zeit voran
+            zeit = zeit.plusMillis(ZEIT_SCHRITT_MS);
+            try {
+                Thread.sleep(ZEIT_SCHRITT_MS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                break;
+            }
+
+            // melde Zeit an alle Flugzeuge
+            synchronized (flugzeuge) {
+                for (Flugzeug flugzeug : flugzeuge) {
+                    flugzeug.meldeZeit(zeit);
                 }
-            });
-            alive = false;
+            }
         }
     }
 
-
+    public void meldeLandung() {
+        final Flugzeug flugzeug = new Flugzeug(zeit, this);
+        flugzeug.start();
+        synchronized (flugzeuge) {
+            flugzeuge.add(flugzeug);
+        }
+    }
 }

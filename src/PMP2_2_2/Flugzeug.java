@@ -1,45 +1,69 @@
 package PMP2_2_2;
 
+import java.time.Duration;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Flugzeug extends Thread{
+public class Flugzeug extends Thread {
+    private final Flughafen flughafen;
+    private final Duration flugdauer = Duration.ofSeconds(ThreadLocalRandom.current().nextInt(10) + 1);
+    private final Duration startZeit;
+    private Duration zeit;
+    private Status status = Status.IM_FLUG;
 
-    private Flughafen flughafen;
-    private String id;
-    private int flugdauer;
-    private int startzeit;
-    private Status status;
-    private int zeit = 0;
-
-    public Flugzeug(String id, int flugdauer, Flughafen flughafen, int zeit) {
-        this.id = id;
+    public Flugzeug(Duration startZeit, Flughafen flughafen) {
+        this.startZeit = startZeit;
         this.flughafen = flughafen;
-        status = Status.IM_FLUG;
-        this.flugdauer = flugdauer;
-        this.startzeit = zeit;
-        status = Status.IM_FLUG;
+        zeit = startZeit;
+
+        loggeStatus();
     }
 
     @Override
-    public void run() {
-        while (!isInterrupted()) {
-
-
-
+    public synchronized void run() {
+        // fliege
+        while (zeitSeitStart().compareTo(flugdauer) < 0) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+        status = Status.IM_LANDEANFLUG;
+        loggeStatus();
+
+        // lande
+        final Duration landeZeit = flugdauer.plusMillis(1500);
+        while (zeitSeitStart().compareTo(landeZeit) < 0) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        status = Status.GELANDET;
+        loggeStatus();
+
+        flughafen.meldeLandung();
     }
 
-    public boolean istGelandet(){
-
-
+    public synchronized void meldeZeit(Duration zeit) {
+        this.zeit = zeit;
+        notify();
     }
 
-    @Override
-    public String toString() {
-        return id + startzeit + status;
+    private Duration zeitSeitStart() {
+        return zeit.minus(startZeit);
     }
 
-    public void setZeit(int zeit) {
-        this.zeit = zeit - this.startzeit;
-        flugdauer = this.zeit - startzeit;
+    private void loggeStatus() {
+        if (status == Status.IM_FLUG) {
+            final long flugdauerSek = flugdauer.toMillis() / 1000;
+            System.err.printf("Flugzeug (%s) ist %s, mit einer Flugdauer von %d s.%n",
+                    getName(), status.getText(), flugdauerSek);
+        } else {
+            System.err.printf("Flugzeug (%s) ist %s.%n", getName(), status.getText());
+        }
     }
 }
