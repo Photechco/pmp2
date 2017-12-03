@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMP2_3.Controller">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutX="10.0" layoutY="210.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="612.0" layoutY="85.0" text="Gleise">
-                     <font>
-                        <Font name="System Bold" size="21.0" />
-                     </font></Label>
-               </children>
-            </AnchorPane>
-            <HBox fx:id="gleis_section" prefHeight="100.0" prefWidth="200.0" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="574.0" layoutY="85.0" text="Warteschange">
-                     <font>
-                        <Font name="System Bold" size="21.0" />
-                     </font></Label>
-               </children>
-            </AnchorPane>
-            <HBox fx:id="waiting_section" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-   </center>
+<BorderPane maxHeight="1.7976931348623157E308" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMP2_3.Controller">
    <bottom>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
             <Label text="Console" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="21.0" />
-               </font></Label>
+               </font>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding></Label>
          </left>
          <center>
-            <Pane fx:id="consol_section" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="consol_section" blendMode="MULTIPLY" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </BorderPane.margin>
+            </TextArea>
          </center>
       </BorderPane>
    </bottom>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Gleis" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font></Label>
+               </top>
+               <bottom>
+                  <HBox fx:id="gleis_section" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="Warteschange" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+               </top>
+               <bottom>
+                  <HBox fx:id="waiting_section" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

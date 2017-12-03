@@ -4,8 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Zugfuehrer extends Thread {
 
-    int status;
-    Rangierbahnhof rangierbahnhof;
+    private Rangierbahnhof rangierbahnhof;
+    public String id;
+    public int gleis;
+
 
     Zugfuehrer (Rangierbahnhof rangierbahnhof) {
         this.rangierbahnhof = rangierbahnhof;
@@ -15,19 +17,31 @@ public class Zugfuehrer extends Thread {
     public void run() {
 
         boolean status =  ThreadLocalRandom.current().nextBoolean();
-        int gleis = (int)(ThreadLocalRandom.current().nextDouble()*10);
+        gleis = (int)(ThreadLocalRandom.current().nextDouble()*10);
 
         if (status) {
-            Zug zug = new Zug("RB" + (int)(Math.random()*100));
+            id = "RB" + (int)(Math.random()*100);
+            Zug zug = new Zug(id);
+            GUI.updateWaiting(this,true);
             rangierbahnhof.zugeinfahren(zug, gleis);
-            System.out.println("Gleis " + (gleis+1) + " ist eingefahren: " + zug.toString());
+            GUI.updateGUI(zug, gleis, status);
+            GUI.updateWaiting(this,false);
+            System.out.println("Gleis " + (gleis+1) + " ist eingefahren: " + zug);
+
         }
         else {
-            Zug zugausfahrt = rangierbahnhof.zugAusfahren(gleis);
+            Zug zug = rangierbahnhof.zugAusfahren(gleis);
 
-            if (zugausfahrt != null) {
-                System.out.println("Gleis " + (gleis+1) + " ist ausgefahren " + zugausfahrt);
+            if (zug != null) {
+
+                GUI.updateGUI(zug, gleis, status);
+                System.out.println("Gleis " + (gleis+1) + " ist ausgefahren " + zug);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return id;
     }
 }
