@@ -17,7 +17,7 @@ public class Rangierbahnhof {
             wait();
         }
         gleise[gleisNummer] = zug;
-        notify();
+        notifyAll();
     }
 
     public synchronized Zug zugAusfahren(int gleisNummer) throws InterruptedException {
@@ -26,7 +26,7 @@ public class Rangierbahnhof {
         }
         Zug ausfahrt = gleise[gleisNummer];
         gleise[gleisNummer] = null;
-        notify();
+        notifyAll();
         return ausfahrt;
     }
 
