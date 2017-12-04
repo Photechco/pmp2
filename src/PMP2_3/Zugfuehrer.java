@@ -1,47 +1,91 @@
 package PMP2_3;
 
+import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Zugfuehrer extends Thread {
+public class Zugfuehrer extends Observable implements Runnable {
+    public enum Aufgabe {
+        EINFAHREN, AUSFAHREN
+    }
 
-    private Rangierbahnhof rangierbahnhof;
-    public String id;
-    public int gleis;
+    private final Rangierbahnhof rangierbahnhof;
+    private final Aufgabe aufgabe;
+    private final String zugId;
+    private final int gleis;
 
+    private boolean fertig;
+    private String abschlussNachricht;
 
-    Zugfuehrer (Rangierbahnhof rangierbahnhof) {
+    Zugfuehrer(Rangierbahnhof rangierbahnhof) {
         this.rangierbahnhof = rangierbahnhof;
+        aufgabe = ThreadLocalRandom.current().nextBoolean() ? Aufgabe.EINFAHREN : Aufgabe.AUSFAHREN;
+        gleis = ThreadLocalRandom.current().nextInt(rangierbahnhof.getGleisAnzahl());
+        zugId = "RB" + ThreadLocalRandom.current().nextInt(10, 100);
+    }
+
+
+    public int getGleis() {
+        return gleis;
+    }
+
+    public Aufgabe getAufgabe() {
+        return aufgabe;
+    }
+
+    public boolean istFertig() {
+        return fertig;
+    }
+
+    public String getAbschlussNachricht() {
+        return abschlussNachricht;
     }
 
     @Override
     public void run() {
+        if (aufgabe == Aufgabe.EINFAHREN) {
+            einfahren();
+        } else if (aufgabe == Aufgabe.AUSFAHREN) {
+            ausfahren();
+        }
 
-        boolean status =  ThreadLocalRandom.current().nextBoolean();
-        gleis = (int)(ThreadLocalRandom.current().nextDouble()*10);
+        fertig = true;
+        setChanged();
+        notifyObservers();
+    }
 
-        if (status) {
-            id = "RB" + (int)(Math.random()*100);
-            Zug zug = new Zug(id);
-            GUI.updateWaiting(this,true);
+    private void einfahren() {
+        Zug zug = new Zug(zugId);
+
+        try {
             rangierbahnhof.zugeinfahren(zug, gleis);
-            GUI.updateGUI(zug, gleis, status);
-            GUI.updateWaiting(this,false);
-            System.out.println("Gleis " + (gleis+1) + " ist eingefahren: " + zug);
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return;
         }
-        else {
-            Zug zug = rangierbahnhof.zugAusfahren(gleis);
 
-            if (zug != null) {
+        abschlussNachricht = "Gleis " + (gleis + 1) + " ist eingefahren: " + zug;
+    }
 
-                GUI.updateGUI(zug, gleis, status);
-                System.out.println("Gleis " + (gleis+1) + " ist ausgefahren " + zug);
-            }
+    private void ausfahren() {
+        Zug zug;
+        try {
+            zug = rangierbahnhof.zugAusfahren(gleis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return;
         }
+
+        abschlussNachricht = "Gleis " + (gleis + 1) + " ist ausgefahren " + zug;
     }
 
     @Override
     public String toString() {
-        return id;
+        if (aufgabe == Aufgabe.EINFAHREN) {
+            return "⬆ " + zugId;
+        }
+        else if (aufgabe == Aufgabe.AUSFAHREN) {
+            return "⬇ wartet";
+        }
+        return "ungültige Aufgabe";
     }
 }

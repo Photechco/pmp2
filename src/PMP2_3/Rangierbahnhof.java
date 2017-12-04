@@ -12,21 +12,21 @@ public class Rangierbahnhof {
         gleise = new Zug[10];
     }
 
-    public synchronized void zugeinfahren(Zug zug, int gleisNummer) {
+    public synchronized void zugeinfahren(Zug zug, int gleisNummer) throws InterruptedException {
         while (gleise[gleisNummer] != null) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            wait();
         }
         gleise[gleisNummer] = zug;
+        notify();
     }
 
-    public synchronized Zug zugAusfahren(int gleisNummer) {
+    public synchronized Zug zugAusfahren(int gleisNummer) throws InterruptedException {
+        while (gleise[gleisNummer] == null) {
+            wait();
+        }
         Zug ausfahrt = gleise[gleisNummer];
         gleise[gleisNummer] = null;
-        notifyAll();
+        notify();
         return ausfahrt;
     }
 
