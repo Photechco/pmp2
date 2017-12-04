@@ -4,25 +4,18 @@ import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Zugfuehrer extends Observable implements Runnable {
-    public enum Aufgabe {
-        EINFAHREN, AUSFAHREN
-    }
-
     private final Rangierbahnhof rangierbahnhof;
     private final Aufgabe aufgabe;
     private final String zugId;
     private final int gleis;
-
     private boolean fertig;
     private String abschlussNachricht;
-
     Zugfuehrer(Rangierbahnhof rangierbahnhof) {
         this.rangierbahnhof = rangierbahnhof;
         aufgabe = ThreadLocalRandom.current().nextBoolean() ? Aufgabe.EINFAHREN : Aufgabe.AUSFAHREN;
         gleis = ThreadLocalRandom.current().nextInt(rangierbahnhof.getGleisAnzahl());
         zugId = "RB" + ThreadLocalRandom.current().nextInt(10, 100);
     }
-
 
     public int getGleis() {
         return gleis;
@@ -57,7 +50,7 @@ public class Zugfuehrer extends Observable implements Runnable {
         Zug zug = new Zug(zugId);
 
         try {
-            rangierbahnhof.zugeinfahren(zug, gleis);
+            rangierbahnhof.zugEinfahren(zug, gleis);
         } catch (InterruptedException e) {
             e.printStackTrace();
             return;
@@ -75,6 +68,10 @@ public class Zugfuehrer extends Observable implements Runnable {
             return;
         }
 
+        if (zug == null) {
+            return;
+        }
+
         abschlussNachricht = "Gleis " + (gleis + 1) + " ist ausgefahren " + zug;
     }
 
@@ -82,10 +79,13 @@ public class Zugfuehrer extends Observable implements Runnable {
     public String toString() {
         if (aufgabe == Aufgabe.EINFAHREN) {
             return "⬆ " + zugId;
-        }
-        else if (aufgabe == Aufgabe.AUSFAHREN) {
+        } else if (aufgabe == Aufgabe.AUSFAHREN) {
             return "⬇ wartet";
         }
         return "ungültige Aufgabe";
+    }
+
+    public enum Aufgabe {
+        EINFAHREN, AUSFAHREN
     }
 }

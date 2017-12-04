@@ -25,21 +25,18 @@ public class GUI extends Application implements Observer {
      * speichert die aktuell laufende Simulation
      */
     private Simulation simulation;
+    private Thread simlationThread;
     private Controller controller;
 
     public static void main(String[] args) {
         launch(args);
-
     }
-
-
 
     @Override
     public void init() throws Exception {
-        super.init();
-
         simulation = new Simulation();
         simulation.addObserver(this);
+        simlationThread = new Thread(simulation);
     }
 
     /**
@@ -62,8 +59,8 @@ public class GUI extends Application implements Observer {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Thread thread = new Thread(simulation);
-        thread.start();
+        // start simulation
+        simlationThread.start();
     }
 
     @Override
@@ -97,6 +94,8 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void stop() throws Exception {
-        super.stop();
+        simulation.deleteObservers();
+        simlationThread.interrupt();
+        simulation.getRangierbahnhof().destroy();
     }
 }

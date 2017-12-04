@@ -1,18 +1,15 @@
 package PMP2_3;
 
-import com.sun.javafx.collections.ObservableSequentialListWrapper;
-import javafx.collections.ObservableList;
-
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 public class Simulation extends Observable implements Runnable, Observer {
-    public static final int ANZAHL_GLEISE = 1;
+    static final int ANZAHL_GLEISE = 6;
+    private static final int DELAY_MS = 500;
+
     private final Rangierbahnhof rangierbahnhof;
 
-    Simulation () {
+    Simulation() {
         rangierbahnhof = new Rangierbahnhof(ANZAHL_GLEISE);
     }
 
@@ -28,20 +25,22 @@ public class Simulation extends Observable implements Runnable, Observer {
             new Thread(zugfuehrer).start();
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(DELAY_MS);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                break;
             }
         }
+
+        System.out.println("Simulation unterbrochen!");
     }
 
-    public int getAnzahlGleise() {
-        return rangierbahnhof.getGleisAnzahl();
+    public Rangierbahnhof getRangierbahnhof() {
+        return rangierbahnhof;
     }
 
     @Override
     public synchronized void update(Observable o, Object arg) {
-        if (!(o instanceof  Zugfuehrer))return;
+        if (!(o instanceof Zugfuehrer)) return;
         Zugfuehrer zugfuehrer = (Zugfuehrer) o;
 
         zugfuehrer.deleteObserver(this);
