@@ -20,12 +20,21 @@ public class Controller implements Initializable {
     private static List<ListView> waitingList  = new ArrayList<>();
     private static TextArea consolSection;
 
+    /**
+     * Initialisierung des GUI
+     * Anzeigebereich für Gleise wird Dynamisch erzeugt.
+     * Anzeigebereich für Warteschlange der Züge wird Dynamisch erzuegt.
+     * Textfeld für Konsolenausgabe wird erzeugt.
+     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         System.out.println("Controller geladen!");
 
         for (int i = 0; i < GUI.getSimulation().getAnzahlGleise(); i++) {
+
+            //Initialisierung Gleisbereich
 
             Label label = new Label();
             label.setText("Gleis " + (i+1));
@@ -35,10 +44,15 @@ public class Controller implements Initializable {
             gleis_section.getChildren().add(i,label);
             labelList.add(label);
 
+            //Initialisierung Wartebereich
+
             ListView<String> listView = new ListView<>();
             waiting_section.getChildren().add(i,listView);
             waitingList.add(listView);
         }
+
+        //Wartebereich statisch aufrufbar machen
+
         this.consolSection = consol_section;
     }
 

@@ -11,11 +11,30 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * Controller zur aktualisierung der grafischen Benuzeroberfläche
+ */
+
 public class GUI extends Application {
 
+    /**
+     * Verwaltet die Gleisanzeigelabel
+     */
     private static List<Label> gleisSection;
+
+    /**
+     * Verwaltet die Listview Elemente zur anzeige des Wartebereichs
+     */
     private static List<ListView> waitSection;
+
+    /**
+     * speichert die aktuell laufende Simulation
+     */
     private static Simulation simulation;
+
+    /**
+     * TextArea zur anzeige der Consolenausgabe
+     */
     private static TextArea consol_Section;
 
     public static void main(String[] args) {
@@ -24,6 +43,10 @@ public class GUI extends Application {
         thread.start();
         launch(args);
     }
+
+    /**
+     * Lädt das GUI und weist Verbindungen zur GUI zu
+     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -44,6 +67,15 @@ public class GUI extends Application {
 
     }
 
+    /**
+     * Anzeige des Gleises (belgt oder nicht Belegt wird aktualisiert).
+     * Consolenbereich wird aktualisiert
+     *
+     * @param zug Zu behandelner Zug -> Ausgabe in der Console
+     * @param gleis Gleis des Zuges -> Anzeige des Gleises
+     * @param status Ein oder ausfahrt eines Zuges
+     */
+
     public synchronized static void updateGUI(Zug zug, int gleis, boolean status) {
 
         Label label = gleisSection.get(gleis);
@@ -56,6 +88,12 @@ public class GUI extends Application {
         }
     }
 
+    /**
+     * Warteberich wird aktualisiert. Hinzufügen oder entfernen aus ViewList.
+     * @param zugfuehrer zu behandelner Zuführer
+     * @param status @True Hinzufügen zu wartebereich @False entfernen aus wartebereich
+     */
+
     public synchronized static void updateWaiting(Zugfuehrer zugfuehrer, boolean status) {
 
         if (status) {
@@ -65,6 +103,11 @@ public class GUI extends Application {
             waitSection.get(zugfuehrer.gleis).getItems().removeAll(zugfuehrer);
         }
     }
+
+    /**
+     * Lesen der Simulation
+     * @return lesen der Simulation
+     */
 
     public static Simulation getSimulation() {
         return simulation;
