@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Simulation extends Observable implements Runnable, Observer {
-    static final int ANZAHL_GLEISE = 6;
+    static final int ANZAHL_GLEISE = 5;
     private static final int DELAY_MS = 500;
 
     private final Rangierbahnhof rangierbahnhof;

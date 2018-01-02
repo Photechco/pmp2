@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -32,7 +33,6 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Gleis" BorderPane.alignment="CENTER">
@@ -43,6 +43,9 @@
                <bottom>
                   <HBox fx:id="gleis_section" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </bottom>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>

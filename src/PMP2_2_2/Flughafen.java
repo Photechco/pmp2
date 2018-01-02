@@ -44,6 +44,7 @@ public class Flughafen extends Thread {
                 for (Flugzeug flugzeug : flugzeuge) {
                     flugzeug.meldeZeit(zeit);
                 }
+
             }
         }
     }
