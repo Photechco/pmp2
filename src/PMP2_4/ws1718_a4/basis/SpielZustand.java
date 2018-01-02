@@ -2,7 +2,7 @@ package PMP2_4.ws1718_a4.basis;
 
 import java.util.Observable;
 
-import ws1718_a4.basis.Konstanten.SpielStatus;
+import PMP2_4.ws1718_a4.basis.Konstanten.SpielStatus;
 
 /**
  * Aktueller Zustand des Editors.

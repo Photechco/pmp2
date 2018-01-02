@@ -3,11 +3,11 @@ package PMP2_4.ws1718_a4.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.Neuzeichnen;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Konstanten.Befehl;
-import ws1718_a4.basis.Konstanten.SpielStatus;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.Neuzeichnen;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Konstanten.Befehl;
+import PMP2_4.ws1718_a4.basis.Konstanten.SpielStatus;
 
 /**
  * Zentraler Controller für die Interaktion mit einem Spiel.

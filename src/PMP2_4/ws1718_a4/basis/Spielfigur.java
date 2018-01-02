@@ -3,7 +3,7 @@ package PMP2_4.ws1718_a4.basis;
 import org.json.simple.JSONObject;
 
 import PMP2_4.ws1718_a4.assets.Assets.AssetTyp;
-import ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
 
 /**
  * Die Spielfigur, die vom Anwender gesteuert wird.

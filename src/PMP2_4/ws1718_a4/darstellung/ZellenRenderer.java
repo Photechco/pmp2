@@ -4,11 +4,11 @@ import java.awt.Point;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ws1718_a4.basis.Asset;
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Zelle;
-import ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.basis.Asset;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
 
 /**
  * Renderer für eine Zelle.

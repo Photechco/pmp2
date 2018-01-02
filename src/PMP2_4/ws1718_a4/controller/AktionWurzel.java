@@ -2,7 +2,7 @@ package PMP2_4.ws1718_a4.controller;
 
 import java.util.List;
 
-import ws1718_a4.basis.Konstanten.Befehl;
+import PMP2_4.ws1718_a4.basis.Konstanten.Befehl;
 
 /**
  * Startpunkt des Entscheidungsbaumes für die Aktionen des Spielers.

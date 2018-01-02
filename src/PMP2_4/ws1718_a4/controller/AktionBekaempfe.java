@@ -2,15 +2,15 @@ package PMP2_4.ws1718_a4.controller;
 
 import java.util.List;
 
-import ws1718_a4.assets.Assets.AssetTyp;
-import ws1718_a4.basis.Asset;
-import ws1718_a4.basis.Boesewicht;
-import ws1718_a4.basis.Level;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Spielfigur;
-import ws1718_a4.basis.Zelle;
-import ws1718_a4.basis.Konstanten.Befehl;
-import ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.assets.Assets.AssetTyp;
+import PMP2_4.ws1718_a4.basis.Asset;
+import PMP2_4.ws1718_a4.basis.Boesewicht;
+import PMP2_4.ws1718_a4.basis.Level;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Spielfigur;
+import PMP2_4.ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.basis.Konstanten.Befehl;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
 
 /**
  * Bekämpfen eines Gegners

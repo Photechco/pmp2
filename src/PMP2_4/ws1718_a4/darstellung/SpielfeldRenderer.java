@@ -5,10 +5,10 @@ import java.util.Iterator;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.Neuzeichenbar;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.Neuzeichenbar;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Zelle;
 
 /**
  * Renderer für ein Level

@@ -17,11 +17,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.Level;
-import ws1718_a4.basis.LevelGenerator;
-import ws1718_a4.basis.LevelIO;
-import ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.Level;
+import PMP2_4.ws1718_a4.basis.LevelGenerator;
+import PMP2_4.ws1718_a4.basis.LevelIO;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
 
 /**
  * Ein Editor zum Gestalten von Leveln.

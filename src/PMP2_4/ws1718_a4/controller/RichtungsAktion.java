@@ -3,8 +3,8 @@ package PMP2_4.ws1718_a4.controller;
 import java.util.HashSet;
 import java.util.Set;
 
-import ws1718_a4.basis.Konstanten.Befehl;
-import ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.basis.Konstanten.Befehl;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
 
 /**
  * Gemeinsame Basisklasse für alle Aktionen, die mit Richtungen zu tun haben.

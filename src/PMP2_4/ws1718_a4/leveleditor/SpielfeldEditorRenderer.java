@@ -6,12 +6,12 @@ import java.util.Iterator;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Color;
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Zelle;
-import ws1718_a4.basis.Konstanten.Richtung;
-import ws1718_a4.darstellung.SpielfeldRenderer;
-import ws1718_a4.darstellung.ZellenRenderer;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.darstellung.SpielfeldRenderer;
+import PMP2_4.ws1718_a4.darstellung.ZellenRenderer;
 
 /**
  * Level-Editor für das Spiel

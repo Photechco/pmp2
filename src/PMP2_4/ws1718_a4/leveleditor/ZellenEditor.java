@@ -9,14 +9,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import ws1718_a4.assets.Assets.AssetTyp;
-import ws1718_a4.basis.Asset;
-import ws1718_a4.basis.Boesewicht;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Spielfigur;
-import ws1718_a4.basis.SpielfigurNPC;
-import ws1718_a4.basis.Zelle;
-import ws1718_a4.basis.Konstanten.Richtung;
+import PMP2_4.ws1718_a4.assets.Assets.AssetTyp;
+import PMP2_4.ws1718_a4.basis.Asset;
+import PMP2_4.ws1718_a4.basis.Boesewicht;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Spielfigur;
+import PMP2_4.ws1718_a4.basis.SpielfigurNPC;
+import PMP2_4.ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.basis.Konstanten.Richtung;
 
 public class ZellenEditor extends GridPane implements Observer {
 

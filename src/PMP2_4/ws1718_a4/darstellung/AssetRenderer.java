@@ -7,9 +7,9 @@ import java.util.Map;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import ws1718_a4.assets.Assets;
-import ws1718_a4.assets.Assets.AssetTyp;
-import ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.assets.Assets;
+import PMP2_4.ws1718_a4.assets.Assets.AssetTyp;
+import PMP2_4.ws1718_a4.basis.Konstanten;
 
 public class AssetRenderer {
 

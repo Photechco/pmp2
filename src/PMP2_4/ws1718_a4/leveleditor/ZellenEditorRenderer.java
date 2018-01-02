@@ -7,10 +7,10 @@ import java.util.Observer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ws1718_a4.basis.Konstanten;
-import ws1718_a4.basis.SpielZustand;
-import ws1718_a4.basis.Zelle;
-import ws1718_a4.darstellung.ZellenRenderer;
+import PMP2_4.ws1718_a4.basis.Konstanten;
+import PMP2_4.ws1718_a4.basis.SpielZustand;
+import PMP2_4.ws1718_a4.basis.Zelle;
+import PMP2_4.ws1718_a4.darstellung.ZellenRenderer;
 
 /**
  * Zeichnet die aktuelle Zelle
